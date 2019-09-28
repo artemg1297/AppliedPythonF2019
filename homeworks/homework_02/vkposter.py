@@ -46,6 +46,7 @@ class VKPoster:
 
     def get_most_popular_posts(self, k: int) -> list:
         lis = []
+        self.posts = {}
         for key in self.seen.keys():
             self.posts[key] = len(self.seen[key])
             lis.append(self.posts[key])
