@@ -40,8 +40,8 @@ class VKPoster:
             if ma == -1:
                 if user_id not in self.subs.keys():
                     return
-                for j in range(len(self.subs[user_id])):
-                    user = self.subs[user_id][j]
+                for j in self.subs[user_id]:
+                    user = j
                     dc[user] = self.posted[user][:]
             ma = 0
             for key in dc.keys():
