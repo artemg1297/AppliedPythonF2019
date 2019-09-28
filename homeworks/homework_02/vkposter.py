@@ -32,22 +32,18 @@ class VKPoster:
                     self.subs[follower_user_id].append(followee_user_id)
 
     def get_recent_posts(self, user_id: int, k: int)-> list:
-        mi = 0
+        ma = -1
         dc = {}
         lis = []
         i = 1
         while i <= k:
-            if mi == 0:
+            if ma == -1:
                 if user_id not in self.subs.keys():
                     return
                 for j in range(len(self.subs[user_id])):
                     user = self.subs[user_id][j]
                     dc[user] = self.posted[user][:]
-                    if mi == 0:
-                        mi = min(dc[user])
-                    elif (min(dc[user]) < mi):
-                        mi = min(dc[user])
-            ma = mi
+            ma = 0
             for key in dc.keys():
                 if dc[key] != []:
                     if max(dc[key]) not in lis:
@@ -55,6 +51,9 @@ class VKPoster:
                             ma = max(dc[key])
                     else:
                         dc[key].remove(max(dc[key]))
+            if lis != []:
+                if ma == lis[i-2] or ma == 0:
+                    break
             lis.append(ma)
             i += 1
         lis = sorted(lis)
