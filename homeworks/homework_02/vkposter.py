@@ -53,9 +53,6 @@ class VKPoster:
                             ma = max(dc[key])
                     else:
                         dc[key].remove(max(dc[key]))
-            if lis != []:
-                if ma == lis[i-2]:
-                    break
             lis.append(ma)
             i += 1
         lis = sorted(lis)
@@ -81,7 +78,7 @@ class VKPoster:
                 j += 1
             else:
                 break
-            if (lis[j] != lis [j - 1]) or (j == len(lis) - 1):
+            if (lis[j] != lis[j - 1]) or (j == len(lis) - 1):
                 res2 = sorted(res2)
                 print(res2[::-1])
                 res += res2[::-1]
