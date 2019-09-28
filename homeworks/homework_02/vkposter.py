@@ -62,7 +62,6 @@ class VKPoster:
                 break
             if (lis[j] != lis[j - 1]) or (j == len(lis) - 1):
                 res2 = sorted(res2)
-                print(res2[::-1])
                 res += res2[::-1]
                 res2 = []
             i += 1
