@@ -46,13 +46,14 @@ class VKPoster:
         for key in self.seen.keys():
             self.posts[key] = len(self.seen[key])
             lis.append(self.posts[key])
+        print(self.posts)
         lis = sorted(lis)
         lis = lis[::-1]
         res = []
         res2 = []
         i = 1
         j = 0
-        while i <= k:
+        while i <= k + 1:
             for key in self.posts.keys():
                 if (self.posts[key] == lis[j]) and key not in res2:
                     res2.append(key)
@@ -60,7 +61,7 @@ class VKPoster:
                 j += 1
             else:
                 break
-            if (lis[j] != lis[j - 1]) or (j == len(lis) - 1):
+            if (lis[j] != lis [j - 1]) or (j == len(lis) - 1):
                 res2 = sorted(res2)
                 res += res2[::-1]
                 res2 = []
