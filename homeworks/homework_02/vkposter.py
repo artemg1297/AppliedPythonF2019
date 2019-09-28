@@ -32,14 +32,17 @@ class VKPoster:
                     self.subs[follower_user_id].append(followee_user_id)
 
     def get_recent_posts(self, user_id: int, k: int)-> list:
-                lis = []
-                if user_id not in self.subs.keys():
-                    return
-                for j in self.subs[user_id]:
-                    lis = lis + (self.posted[j])
-                lis = sorted(lis)
-                lis.reverse()
-                return lis[:k]
+        lis = []
+        if user_id not in self.subs.keys():
+            return
+        for j in range(len(self.subs[user_id])):
+            user = self.subs[user_id][j]
+            print(user)
+            if user in self.posted:
+                lis = lis + self.posted[user]
+        lis = sorted(lis)
+        lis.reverse()
+        return lis[:k]
 
     def get_most_popular_posts(self, k: int) -> list:
         lis = []
