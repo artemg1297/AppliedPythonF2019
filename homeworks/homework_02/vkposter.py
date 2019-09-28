@@ -24,7 +24,7 @@ class VKPoster:
                 self.seen[post_id].append(user_id)
 
     def user_follow_for(self, follower_user_id: int, followee_user_id: int):
-        if follower_user_id != followee_user_id:
+        #if follower_user_id != followee_user_id:
             if follower_user_id not in self.subs:
                 self.subs[follower_user_id] = [followee_user_id]
             else:
