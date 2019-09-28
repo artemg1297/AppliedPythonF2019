@@ -9,6 +9,7 @@ class VKPoster:
         self.seen = {}
         self.subs = {}
         self.posts = {}
+
     def user_posted_post(self, user_id: int, post_id: int):
         if user_id not in self.posted:
             self.posted[user_id] = [post_id]
@@ -23,12 +24,12 @@ class VKPoster:
                 self.seen[post_id].append(user_id)
 
     def user_follow_for(self, follower_user_id: int, followee_user_id: int):
-        if followee_user_id != follower_user_id:
-            if followee_user_id not in self.subs:
-                self.subs[followee_user_id] = [follower_user_id]
+        if follower_user_id != followee_user_id:
+            if follower_user_id not in self.subs:
+                self.subs[follower_user_id] = [followee_user_id]
             else:
-                if follower_user_id not in self.subs[followee_user_id]:
-                    self.subs[followee_user_id].append(follower_user_id)
+                if followee_user_id not in self.subs[follower_user_id]:
+                    self.subs[follower_user_id].append(followee_user_id)
 
     def get_recent_posts(self, user_id: int, k: int)-> list:
         mi = 0
