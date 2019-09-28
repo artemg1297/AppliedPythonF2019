@@ -5,55 +5,85 @@
 class VKPoster:
 
     def __init__(self):
-        raise NotImplementedError
-
+        self.posted = {}
+        self.seen = {}
+        self.subs = {}
+        self.posts = {}
     def user_posted_post(self, user_id: int, post_id: int):
-        '''
-        Метод который вызывается когда пользователь user_id
-        выложил пост post_id.
-        :param user_id: id пользователя. Число.
-        :param post_id: id поста. Число.
-        :return: ничего
-        '''
-        pass
+        if user_id not in self.posted:
+            self.posted[user_id] = [post_id]
+        else:
+            self.posted[user_id].append(post_id)
 
     def user_read_post(self, user_id: int, post_id: int):
-        '''
-        Метод который вызывается когда пользователь user_id
-        прочитал пост post_id.
-        :param user_id: id пользователя. Число.
-        :param post_id: id поста. Число.
-        :return: ничего
-        '''
-        pass
+        if post_id not in self.seen:
+            self.seen[post_id] = [user_id]
+        else:
+            if user_id not in self.seen[post_id]:
+                self.seen[post_id].append(user_id)
 
     def user_follow_for(self, follower_user_id: int, followee_user_id: int):
-        '''
-        Метод который вызывается когда пользователь follower_user_id
-        подписался на пользователя followee_user_id.
-        :param follower_user_id: id пользователя. Число.
-        :param followee_user_id: id пользователя. Число.
-        :return: ничего
-        '''
-        pass
+        if followee_user_id != follower_user_id:
+            if followee_user_id not in self.subs:
+                self.subs[followee_user_id] = [follower_user_id]
+            else:
+                if follower_user_id not in self.subs[followee_user_id]:
+                    self.subs[followee_user_id].append(follower_user_id)
 
     def get_recent_posts(self, user_id: int, k: int)-> list:
-        '''
-        Метод который вызывается когда пользователь user_id
-        запрашивает k свежих постов людей на которых он подписан.
-        :param user_id: id пользователя. Число.
-        :param k: Сколько самых свежих постов необходимо вывести. Число.
-        :return: Список из post_id размером К из свежих постов в
-        ленте пользователя. list
-        '''
-        pass
+        mi = 0
+        dc = {}
+        lis = []
+        i = 1
+        while i <= k:
+            if mi == 0:
+                for j in range(len(self.subs[user_id])):
+                    user = self.subs[user_id][j]
+                    dc[user] = self.posted[user][:]
+                    if mi == 0:
+                        mi = min(dc[user])
+                    elif (min(dc[user]) < mi):
+                        mi = min(dc[user])
+            ma = mi
+            for key in dc.keys():
+                if dc[key] != []:
+                    if max(dc[key]) not in lis:
+                        if max(dc[key]) > ma:
+                            ma = max(dc[key])
+                    else:
+                        dc[key].remove(max(dc[key]))
+            if lis != []:
+                if ma == lis[i-2]:
+                    break
+            lis.append(ma)
+            i += 1
+        lis = sorted(lis)
+        lis.reverse()
+        return lis
 
     def get_most_popular_posts(self, k: int) -> list:
-        '''
-        Метод который возвращает список k самых популярных постов за все время,
-        остортированных по свежести.
-        :param k: Сколько самых свежих популярных постов
-        необходимо вывести. Число.
-        :return: Список из post_id размером К из популярных постов. list
-        '''
-        pass
+        lis = []
+        for key in self.seen.keys():
+            self.posts[key] = len(self.seen[key])
+            lis.append(self.posts[key])
+        lis = sorted(lis)
+        lis = lis[::-1]
+        res = []
+        res2 = []
+        i = 1
+        j = 0
+        while i <= k:
+            for key in self.posts.keys():
+                if (self.posts[key] == lis[j]) and key not in res2:
+                    res2.append(key)
+            if j < len(lis) - 1:
+                j += 1
+            else:
+                break
+            if (lis[j] != lis [j - 1]) or (j == len(lis) - 1):
+                res2 = sorted(res2)
+                print(res2[::-1])
+                res += res2[::-1]
+                res2 = []
+            i += 1
+        return res
