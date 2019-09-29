@@ -37,7 +37,6 @@ class VKPoster:
             return
         for j in range(len(self.subs[user_id])):
             user = self.subs[user_id][j]
-            print(user)
             if user in self.posted:
                 lis = lis + self.posted[user]
         lis = sorted(lis)
@@ -50,23 +49,25 @@ class VKPoster:
             for key in self.seen.keys():
                 self.posts[key] = len(self.seen[key])
                 lis.append(self.posts[key])
-            lis = sorted(lis)
-            lis = lis[::-1] + [-1]
+            print(self.posts)
+            lis = []
+            for key in self.posts.keys():
+                lis.append(self.posts[key])
+            lis = sorted(lis)[::-1]
+            lis = lis[:k] + [-1]
             res = []
-            res2 = []
-            i = 1
-            j = 0
-            while i <= k + 1:
-                for key in self.posts.keys():
-                    if (self.posts[key] == lis[j]) and key not in res2:
-                        res2.append(key)
-                j += 1
-                if j >= 1 and j < len(lis):
-                    if (lis[j] != lis[j - 1]) or lis[j] == -1:
-                        res2 = sorted(res2)
-                        res += res2[::-1]
-                        res2 = []
-                else:
+            for i in range(len(lis)):
+                if lis[i] == -1:
                     break
-                i += 1
-            return res[:k]
+                if i == 0:
+                    p = i
+                else:
+                    if lis[i - 1] != lis[i]:
+                        so = sorted(res[p: i])[::-1]
+                        res[p: i] = so
+                        p = i
+                for key in self.posts.keys():
+                    if (self.posts[key] == lis[i]) and key not in res:
+                        res.append(key)
+                        break
+            return res
