@@ -45,28 +45,28 @@ class VKPoster:
         return lis[:k]
 
     def get_most_popular_posts(self, k: int) -> list:
-        lis = []
-        self.posts = {}
-        for key in self.seen.keys():
-            self.posts[key] = len(self.seen[key])
-            lis.append(self.posts[key])
-        lis = sorted(lis)
-        lis = lis[::-1]
-        res = []
-        res2 = []
-        i = 1
-        j = 0
-        while i <= k + 1:
-            for key in self.posts.keys():
-                if (self.posts[key] == lis[j]) and key not in res2:
-                    res2.append(key)
-            if j < len(lis):
+            lis = []
+            self.posts = {}
+            for key in self.seen.keys():
+                self.posts[key] = len(self.seen[key])
+                lis.append(self.posts[key])
+            lis = sorted(lis)
+            lis = lis[::-1] + [-1]
+            res = []
+            res2 = []
+            i = 1
+            j = 0
+            while i <= k + 1:
+                for key in self.posts.keys():
+                    if (self.posts[key] == lis[j]) and key not in res2:
+                        res2.append(key)
                 j += 1
-            else:
-                break
-            if (lis[j] != lis [j - 1]) or (j == len(lis) - 2):
-                res2 = sorted(res2)
-                res += res2[::-1]
-                res2 = []
-            i += 1
-        return res[:k]
+                if j >= 1 and j < len(lis):
+                    if (lis[j] != lis[j - 1]) or lis[j] == -1:
+                        res2 = sorted(res2)
+                        res += res2[::-1]
+                        res2 = []
+                else:
+                    break
+                i += 1
+            return res[:k]
