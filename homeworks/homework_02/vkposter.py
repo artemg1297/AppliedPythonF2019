@@ -58,8 +58,8 @@ class VKPoster:
             res = []
             for i in range(len(lis)):
                 if lis[i] == -1:
-                    so = sorted(res[p: i - 1])[::-1]
-                    res[p: i - 1] = so
+                    so = sorted(res[p: i])[::-1]
+                    res[p: i] = so
                     break
                 if i == 0:
                     p = i
