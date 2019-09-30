@@ -13,14 +13,6 @@ class outputjson:
         d = {}
         ogl = ['Название','Ссылка','Теги','Оценка']
         maxlen = 0
-        try:
-            with codecs.open(filename, encoding = code) as fu:
-                for line in fu:
-                    st = line.strip().split(':')
-        except FileNotFoundError:
-            return 'Файл не валиден'
-        except:
-            return 0
         with codecs.open(filename, encoding = code) as fu:
             for line in fu:
                 st = line.strip().split(':')
@@ -30,7 +22,7 @@ class outputjson:
                 st[0] = st[0][1:-1]
                 if st[0] in ogl:
                     d[st[0]] = ''
-        minlen = 10
+        minlen = 15
         totlen = 2*(maxlen + 5) + 2*minlen + 5*2 - 1
         k = -1
         with codecs.open(filename, encoding = code) as fu:
@@ -64,17 +56,18 @@ class outputjson:
                     print()
                     for key in lidic[i].keys():
                         if key == 'Оценка' or key == 'Теги':
-                            cl.sizeprint('^','| ', 1, key, minlen)
+                            cl.sizeprint('^','|', 1, key, minlen)
                         else:
-                            cl.sizeprint('^','| ', 1, key, maxlen + 5)
+                            cl.sizeprint('^','| ', 1, key, maxlen + 6)
                     print('|')
                 for key in lidic[i].keys():
                     if key == 'Оценка':
-                        cl.sizeprint('>','| ', 1, lidic[i][key], minlen)
+                        cl.sizeprint('>','|', 1, lidic[i][key], minlen - 2)
                     elif key == 'Теги':
-                        cl.sizeprint('<','| ', 1, lidic[i][key], minlen)
+                        cl.sizeprint('<','|  ', 1, lidic[i][key], minlen - 2)
                     else:
-                        cl.sizeprint('<','| ', 1, lidic[i][key], maxlen + 5)
-                print('|')
+                        cl.sizeprint('<','|  ', 1, lidic[i][key], maxlen + 5)
+                print('  |')
         cl.sizeprint('^','-'*totlen, totlen, '', 0)
-        return 1
+        print()
+        pass
