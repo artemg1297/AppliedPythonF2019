@@ -6,7 +6,7 @@ from class_helpfunc import helpfunc
 from class_tryopen import tryopen
 
 def trying(filename: str):
-    st_code = ['utf8','utf16','cp1251']
+    st_code = ['utf8', 'utf16', 'cp1251']
     er = 0
     js = outputjson()
     ts = outputtsv()
