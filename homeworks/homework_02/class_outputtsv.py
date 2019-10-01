@@ -19,7 +19,7 @@ class outputtsv:
                     if len(st[i]) > maxlen:
                         maxlen = len(st[i])
         minlen = 12
-        totlen = 2*(maxlen + 2) + 2*minlen + 3*1 + 1
+        totlen = 2*(maxlen + 2) + 2*minlen + 3*1 + 2
         title = []
         with codecs.open(filename, encoding=code) as fu:
             for line in fu:
@@ -33,7 +33,7 @@ class outputtsv:
                     for i in range(len(st)):
                         if st[i] == 'Оценка':
                             cl.sizeprint('>', '|', 1, st[i], minlen - 4)
-                            print(' ', end='')
+                            print('  ', end='')
                         elif st[i] == 'Теги':
                             cl.sizeprint('^', '|', 1, st[i], minlen)
                         elif st[i] == 'Ссылка':
@@ -45,6 +45,7 @@ class outputtsv:
                     for i in range(len(st)):
                         if title[i] == 'Оценка':
                             cl.sizeprint('>', '|', 1, st[i], minlen - 4)
+                            print(' ', end='')
                         elif title[i] == 'Теги':
                             cl.sizeprint('<', '|  ', 1, st[i], minlen - 2)
                         elif title[i] == 'Ссылка':
