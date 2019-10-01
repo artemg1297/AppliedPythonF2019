@@ -23,8 +23,8 @@ class outputjson:
                 st[0] = st[0][1:-1]
                 if st[0] in ogl:
                     d[st[0]] = ''
-        minlen = 15
-        totlen = 2*(maxlen + 2) + 2*minlen + 3*1 + 2
+        minlen = 10
+        totlen = 2*(maxlen - 2) + 2*minlen + 3*1 + 1
         k = -1
         with codecs.open(filename, encoding=code) as fu:
             for line in fu:
@@ -53,30 +53,30 @@ class outputjson:
                 continue
             else:
                 if i == 0:
-                    cl.sizeprint('<', '-'*totlen, totlen, '-'*10, 10)
+                    cl.sizeprint('<', '-'*totlen, totlen, '', 0)
                     print()
                     for key in lidic[i].keys():
                         if key == 'Оценка':
-                            cl.sizeprint('>', '|', 1, key, minlen - 4)
-                            print('  ', end='')
+                            cl.sizeprint('^', '|', 1, key, minlen - 1)
+                            print('', end='')
                         elif key == 'Теги':
-                            cl.sizeprint('^', '|', 1, key, minlen)
+                            cl.sizeprint('^', '|', 1, key, minlen - 2)
                         elif key == 'Ссылка':
-                            cl.sizeprint('^', '| ', 1, key, maxlen + 1)
+                            cl.sizeprint('^', '|', 1, key, maxlen - 2)
                         else:
-                            cl.sizeprint('^', '| ', 1, key, maxlen + 3)
+                            cl.sizeprint('^', '|', 1, key, maxlen)
                     print('|')
                 for key in lidic[i].keys():
                     if key == 'Оценка':
-                        cl.sizeprint('>', '|', 1, lidic[i][key], minlen - 4)
+                        cl.sizeprint('>', '|', 1, lidic[i][key], minlen - 2)
                         print(' ', end='')
                     elif key == 'Теги':
-                        cl.sizeprint('<', '|  ', 1, lidic[i][key], minlen - 2)
+                        cl.sizeprint('<', '|', 1, lidic[i][key], minlen - 2)
                     elif key == 'Ссылка':
-                        cl.sizeprint('<', '|  ', 1, lidic[i][key], maxlen)
+                        cl.sizeprint('<', '|  ', 1, lidic[i][key], maxlen - 4)
                     else:
-                        cl.sizeprint('<', '|  ', 1, lidic[i][key], maxlen + 2)
-                print(' |')
+                        cl.sizeprint('<', '|  ', 1, lidic[i][key], maxlen - 2)
+                print('|')
         cl.sizeprint('^', '-'*totlen, totlen, '', 0)
         print()
         pass
