@@ -5,7 +5,7 @@ class tryopen:
 
     def tryop(self, filename: str, code: str):
         try:
-            with open(filename, encoding = code) as fu:
+            with open(filename, encoding=code) as fu:
                 st = fu.readline()
         except FileNotFoundError:
             return -1
@@ -15,7 +15,7 @@ class tryopen:
             return 1
 
     def check(self, filename: str, code: str):
-        with open(filename, encoding = code) as fu:
+        with open(filename, encoding=code) as fu:
             st = fu.readline()
             if '[' in st:
                 return 'json'

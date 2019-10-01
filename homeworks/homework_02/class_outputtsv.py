@@ -10,7 +10,7 @@ class outputtsv:
     def methout(self, filename: str, code: str):
         cl = helpfunc()
         maxlen = 0
-        with codecs.open(filename, encoding = code) as fu:
+        with codecs.open(filename, encoding=code) as fu:
             for line in fu:
                 line = line.strip()
                 st = line.split('\t')
@@ -18,9 +18,9 @@ class outputtsv:
                     if len(st[i]) > maxlen:
                         maxlen = len(st[i])
         minlen = 12
-        totlen = 2*(maxlen + 5) + 2*minlen + 5*2 - 1
+        totlen = 2*(maxlen + 3) + 2*minlen + 3*2 - 1
         title = []
-        with codecs.open(filename, encoding = code) as fu:
+        with codecs.open(filename, encoding=code) as fu:
             for line in fu:
                 line = line.strip()
                 st = line.split('\t')
@@ -33,7 +33,7 @@ class outputtsv:
                         if st[i] == 'Оценка' or st[i] == 'Теги':
                             cl.sizeprint('^','|', 1, st[i], minlen)
                         else:
-                            cl.sizeprint('^','| ', 1, st[i], maxlen + 6)
+                            cl.sizeprint('^','| ', 1, st[i], maxlen + 4)
                     print('|')
                 else:
                     for i in range(len(st)):
@@ -42,7 +42,7 @@ class outputtsv:
                         elif title[i] == 'Теги':
                             cl.sizeprint('<','|  ', 1, st[i], minlen - 2)
                         else:
-                            cl.sizeprint('<','|  ', 1, st[i], maxlen + 5)
+                            cl.sizeprint('<','|  ', 1, st[i], maxlen + 3)
                     print('  |')
             cl.sizeprint('^','-'*totlen, totlen, '', 0)
         pass

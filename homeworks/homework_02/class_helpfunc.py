@@ -30,5 +30,5 @@ class helpfunc:
     def sizeprint(self, str0: str, st1: str, k1: int, st2: str, k2: int):
         fr1 = '{:^' + str(k1) + '}'
         fr2 = '{:' + str0 + str(k2) + '}'
-        print(fr1.format(st1), end = '')
-        print(fr2.format(st2), end = '')
+        print(fr1.format(st1), end='')
+        print(fr2.format(st2), end='')

@@ -13,7 +13,7 @@ class outputjson:
         d = {}
         ogl = ['Название','Ссылка','Теги','Оценка']
         maxlen = 0
-        with codecs.open(filename, encoding = code) as fu:
+        with codecs.open(filename, encoding=code) as fu:
             for line in fu:
                 st = line.strip().split(':')
                 for i in range(len(st)):
@@ -23,9 +23,9 @@ class outputjson:
                 if st[0] in ogl:
                     d[st[0]] = ''
         minlen = 15
-        totlen = 2*(maxlen + 5) + 2*minlen + 5*2 - 1
+        totlen = 2*(maxlen + 3) + 2*minlen + 3*2 - 1
         k = -1
-        with codecs.open(filename, encoding = code) as fu:
+        with codecs.open(filename, encoding=code) as fu:
             for line in fu:
                 st = line.strip().split(':')
                 if '[' or '{' not in st:
@@ -58,7 +58,7 @@ class outputjson:
                         if key == 'Оценка' or key == 'Теги':
                             cl.sizeprint('^','|', 1, key, minlen)
                         else:
-                            cl.sizeprint('^','| ', 1, key, maxlen + 6)
+                            cl.sizeprint('^','| ', 1, key, maxlen + 4)
                     print('|')
                 for key in lidic[i].keys():
                     if key == 'Оценка':
@@ -66,7 +66,7 @@ class outputjson:
                     elif key == 'Теги':
                         cl.sizeprint('<','|  ', 1, lidic[i][key], minlen - 2)
                     else:
-                        cl.sizeprint('<','|  ', 1, lidic[i][key], maxlen + 5)
+                        cl.sizeprint('<','|  ', 1, lidic[i][key], maxlen + 3)
                 print('  |')
         cl.sizeprint('^','-'*totlen, totlen, '', 0)
         print()
