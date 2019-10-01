@@ -57,6 +57,8 @@ class outputjson:
                     for key in lidic[i].keys():
                         if key == 'Оценка' or key == 'Теги':
                             cl.sizeprint('^', '|', 1, key, minlen)
+                        elif key == 'Ссылка':
+                            cl.sizeprint('<', '|  ', 1, key, maxlen - 2)
                         else:
                             cl.sizeprint('^', '| ', 1, key, maxlen + 3)
                     print('|')
@@ -65,8 +67,10 @@ class outputjson:
                         cl.sizeprint('>', '|', 1, lidic[i][key], minlen - 2)
                     elif key == 'Теги':
                         cl.sizeprint('<', '|  ', 1, lidic[i][key], minlen - 2)
+                    elif key == 'Ссылка':
+                        cl.sizeprint('<', '|  ', 1, lidic[i][key], maxlen - 2)
                     else:
-                        cl.sizeprint('<','|  ', 1, lidic[i][key], maxlen + 2)
+                        cl.sizeprint('<', '|  ', 1, lidic[i][key], maxlen + 2)
                 print('  |')
         cl.sizeprint('^', '-'*totlen, totlen, '', 0)
         print()

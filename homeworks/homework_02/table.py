@@ -5,6 +5,7 @@ from class_outputtsv import outputtsv
 from class_helpfunc import helpfunc
 from class_tryopen import tryopen
 
+
 def trying(filename: str):
     st_code = ['utf8', 'utf16', 'cp1251']
     er = 0

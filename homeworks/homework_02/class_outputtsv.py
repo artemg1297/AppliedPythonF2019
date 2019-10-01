@@ -2,6 +2,7 @@ import sys
 import codecs
 from class_helpfunc import helpfunc
 
+
 class outputtsv:
 
     def __int__(self):
@@ -32,6 +33,8 @@ class outputtsv:
                     for i in range(len(st)):
                         if st[i] == 'Оценка' or st[i] == 'Теги':
                             cl.sizeprint('^', '|', 1, st[i], minlen)
+                        elif st[i] == 'Ссылка':
+                            cl.sizeprint('<', '|  ', 1, st[i], maxlen - 2)
                         else:
                             cl.sizeprint('^','| ', 1, st[i], maxlen + 3)
                     print('|')
@@ -41,6 +44,8 @@ class outputtsv:
                             cl.sizeprint('>', '|', 1, st[i], minlen - 2)
                         elif title[i] == 'Теги':
                             cl.sizeprint('<', '|  ', 1, st[i], minlen - 2)
+                        elif title[i] == 'Ссылка':
+                            cl.sizeprint('<', '|  ', 1, st[i], maxlen - 2)
                         else:
                             cl.sizeprint('<', '|  ', 1, st[i], maxlen + 2)
                     print('  |')
