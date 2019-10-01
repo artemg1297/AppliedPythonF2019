@@ -64,7 +64,7 @@ class outputjson:
                         elif key == 'Ссылка':
                             cl.sizeprint('^', '|', 1, key, maxlen - 2)
                         else:
-                            cl.sizeprint('^', '|', 1, key, maxlen)
+                            cl.sizeprint('^', '|', 1, str(key), maxlen)
                     print('|')
                 for key in lidic[i].keys():
                     if key == 'Оценка':
