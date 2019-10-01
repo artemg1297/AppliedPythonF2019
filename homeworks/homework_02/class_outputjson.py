@@ -2,6 +2,7 @@ import sys
 import codecs
 from class_helpfunc import helpfunc
 
+
 class outputjson:
 
     def __int__(self):
@@ -23,7 +24,7 @@ class outputjson:
                 if st[0] in ogl:
                     d[st[0]] = ''
         minlen = 15
-        totlen = 2*(maxlen + 2) + 2*minlen + 3*1 - 1
+        totlen = 2*(maxlen + 2) + 2*minlen + 3*1 + 2
         k = -1
         with codecs.open(filename, encoding=code) as fu:
             for line in fu:

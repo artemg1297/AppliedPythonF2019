@@ -39,7 +39,7 @@ class outputtsv:
                         elif st[i] == 'Ссылка':
                             cl.sizeprint('^', '| ', 1, st[i], maxlen + 1)
                         else:
-                            cl.sizeprint('^','| ', 1, st[i], maxlen + 3)
+                            cl.sizeprint('^', '| ', 1, st[i], maxlen + 3)
                     print('|')
                 else:
                     for i in range(len(st)):
