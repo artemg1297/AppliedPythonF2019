@@ -53,7 +53,7 @@ class outputjson:
                 continue
             else:
                 if i == 0:
-                    cl.sizeprint('<', '-'*totlen, totlen, '', 0)
+                    cl.sizeprint('<', '-'*totlen, totlen, '-'*10, 10)
                     print()
                     for key in lidic[i].keys():
                         if key == 'Оценка':
