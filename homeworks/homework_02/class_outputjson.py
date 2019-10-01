@@ -24,7 +24,7 @@ class outputjson:
                 if st[0] in ogl:
                     d[st[0]] = ''
         minlen = 10
-        totlen = 2*(maxlen - 2) + 2*minlen + 3*1 + 1
+        totlen = 2*(maxlen - 2) + 2*minlen + 3*1 + 4
         k = -1
         with codecs.open(filename, encoding=code) as fu:
             for line in fu:
@@ -57,10 +57,10 @@ class outputjson:
                     print()
                     for key in lidic[i].keys():
                         if key == 'Оценка':
-                            cl.sizeprint('^', '|', 1, key, minlen - 1)
+                            cl.sizeprint('^', '|', 1, key, minlen)
                             print('', end='')
                         elif key == 'Теги':
-                            cl.sizeprint('^', '|', 1, key, minlen - 2)
+                            cl.sizeprint('^', '|', 1, key, minlen)
                         elif key == 'Ссылка':
                             cl.sizeprint('^', '|', 1, key, maxlen - 2)
                         else:
@@ -69,9 +69,9 @@ class outputjson:
                 for key in lidic[i].keys():
                     if key == 'Оценка':
                         cl.sizeprint('>', '|', 1, lidic[i][key], minlen - 2)
-                        print(' ', end='')
+                        print('  ', end='')
                     elif key == 'Теги':
-                        cl.sizeprint('<', '|', 1, lidic[i][key], minlen - 2)
+                        cl.sizeprint('<', '|  ', 1, lidic[i][key], minlen - 2)
                     elif key == 'Ссылка':
                         cl.sizeprint('<', '|  ', 1, lidic[i][key], maxlen - 4)
                     else:
