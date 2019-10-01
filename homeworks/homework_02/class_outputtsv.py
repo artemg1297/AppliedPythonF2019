@@ -34,7 +34,7 @@ class outputtsv:
                         if st[i] == 'Оценка' or st[i] == 'Теги':
                             cl.sizeprint('^', '|', 1, st[i], minlen)
                         elif st[i] == 'Ссылка':
-                            cl.sizeprint('<', '|  ', 1, st[i], maxlen - 2)
+                            cl.sizeprint('<', '|  ', 1, st[i], maxlen - 1)
                         else:
                             cl.sizeprint('^','| ', 1, st[i], maxlen + 3)
                     print('|')
@@ -45,7 +45,7 @@ class outputtsv:
                         elif title[i] == 'Теги':
                             cl.sizeprint('<', '|  ', 1, st[i], minlen - 2)
                         elif title[i] == 'Ссылка':
-                            cl.sizeprint('<', '|  ', 1, st[i], maxlen - 2)
+                            cl.sizeprint('<', '|  ', 1, st[i], maxlen - 1)
                         else:
                             cl.sizeprint('<', '|  ', 1, st[i], maxlen + 2)
                     print('  |')
